@@ -16,5 +16,10 @@ if link.has_attr('href'):
         page=requests.get(address)
 
 print('Change log obtained')
+soup=BeautifulSoup(page.content,'html.parser')
+print(str(soup))
 
+m=re.search('C[a-zA-Z][a-zA-Z]',str(soup))
+#m=re.search('Optifine 1.15.2[.]*/([0-3][0-9]-[0-1][0-9]-2020)',str(soup))
+print(m.group(1))
 
