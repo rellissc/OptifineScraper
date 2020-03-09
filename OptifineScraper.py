@@ -18,8 +18,12 @@ if link.has_attr('href'):
 print('Change log obtained')
 soup=BeautifulSoup(page.content,'html.parser')
 print(str(soup))
+regex=re.compile('OptiFine 1\.15\.2.*2020\)', re.DOTALL)
+#regex=re.compile('OptiFine 1\.14\.4.*2019\)', re.DOTALL)
 
-m=re.search('C[a-zA-Z][a-zA-Z]',str(soup))
-#m=re.search('Optifine 1.15.2[.]*/([0-3][0-9]-[0-1][0-9]-2020)',str(soup))
-print(m.group(1))
+m=re.search(regex,str(soup))
+#m=re.search('OptiFine 1.15.2(.)*\([0-3][0-9].[0-1][0-9].2020\)',str(soup))
+regex=re.compile('(?<!- not) compatible with Forge', re.MULTILINE)
+m=re.search(regex,m.group(0))
+print(m.group(0))
 
